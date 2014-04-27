@@ -14,14 +14,19 @@ module.exports = {
 
           var feature_url = "http://geocommons.com/overlays/" + id + '/features.json';
           request.get( feature_url , function( err, res ){
-            var data = JSON.parse( res.body );
-            if ( data.features ){
-              json.features = data.features;
+            console.log(res.body);
+            try {
+              var data = JSON.parse( res.body );
+              if ( data.features ){
+                json.features = data.features;
 
-              Cache.insert( type, id, json, 0, function( err, success){
-                if ( success ) callback( null, json );
-              });
-            } else {
+                Cache.insert( type, id, json, 0, function( err, success){
+                  if ( success ) callback( null, json );
+                });
+              } else {
+                callback( 'Error accessing overlay '+id+' ' + JSON.stringify(data), null );
+              }
+            } catch (e){
               callback( 'Error accessing overlay '+id+' ' + JSON.stringify(data), null );
             }
           });
