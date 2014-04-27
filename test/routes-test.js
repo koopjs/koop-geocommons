@@ -14,10 +14,10 @@ before(function (done) {
 
 describe('Koop Routes', function(){
 
-    describe('/github/colemanm/hurricanes/fl_2004_hurricanes', function() {
+    describe('/geocommons/103', function() {
       it('should return 200', function(done) {
         request(koop)
-          .get('/github/colemanm/hurricanes/fl_2004_hurricanes')
+          .get('/geocommons/104')
           .end(function(err, res){
             res.should.have.status(200);
             done();
@@ -25,10 +25,10 @@ describe('Koop Routes', function(){
       });
     });
 
-    describe('/github/blarg/', function() {
+    describe('/geocommons/blarg/', function() {
       it('should return 404', function(done) {
         request(koop)
-          .get('/github/blarg')
+          .get('/geocommons/blarg')
           .end(function(err, res){
             res.should.have.status(404);
             done();
@@ -36,10 +36,10 @@ describe('Koop Routes', function(){
       });
     });
 
-    describe('/github/preview', function() {
+    describe('/geocommons/preview', function() {
       it('should return 200', function(done) {
         request(koop)
-          .get('/github/colemanm/hurricanes/fl_2004_hurricanes/preview')
+          .get('/geocommons/preview')
           .end(function(err, res){
             res.should.have.status(200);
             done();
@@ -47,10 +47,10 @@ describe('Koop Routes', function(){
       });
     });
 
-    describe('/github/colemanm/hurricanes/fl_2004_hurricanes', function() {
+    describe('FeatureServer', function() {
       it('should return 200', function(done) {
         request(koop)
-          .get('/github/colemanm/hurricanes/fl_2004_hurricanes')
+          .get('/geocommons/104/FeatureServer')
           .end(function(err, res){
             res.should.have.status(200);
             done();
@@ -58,10 +58,10 @@ describe('Koop Routes', function(){
       });
     });
 
-    describe('/github/colemanm/hurricanes/fl_2004_hurricanes/FeatureServer', function() {
+    describe('/FeatureServer/0', function() {
       it('should return 200', function(done) {
         request(koop)
-          .get('/github/colemanm/hurricanes/fl_2004_hurricanes/FeatureServer')
+          .get('/geocommons/104/FeatureServer/0')
           .end(function(err, res){
             res.should.have.status(200);
             done();
@@ -69,21 +69,10 @@ describe('Koop Routes', function(){
       });
     });
 
-    describe('/github/colemanm/hurricanes/fl_2004_hurricanes/FeatureServer/0', function() {
+    describe('/FeatureServer/0/query', function() {
       it('should return 200', function(done) {
         request(koop)
-          .get('/github/colemanm/hurricanes/fl_2004_hurricanes/FeatureServer/0')
-          .end(function(err, res){
-            res.should.have.status(200);
-            done();
-        });
-      });
-    });
-
-    describe('/github/colemanm/hurricanes/fl_2004_hurricanes/FeatureServer/0/query', function() {
-      it('should return 200', function(done) {
-        request(koop)
-          .get('/github/colemanm/hurricanes/fl_2004_hurricanes/FeatureServer/0/query')
+          .get('/geocommons/103/FeatureServer/0/query')
           .end(function(err, res){
             res.should.have.status(200);
             done();

@@ -14,7 +14,6 @@ module.exports = {
 
           var feature_url = "http://geocommons.com/overlays/" + id + '/features.json';
           request.get( feature_url , function( err, res ){
-            console.log(res.body);
             try {
               var data = JSON.parse( res.body );
               if ( data.features ){
