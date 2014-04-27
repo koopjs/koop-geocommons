@@ -1,5 +1,5 @@
-# koop-github
+# koop-geocommons
 
-## A simple github provider for Koop
+## A simple geocommons provider for Koop
 
-  ```npm install koop-github```
+  ```npm install koop-geocommons```

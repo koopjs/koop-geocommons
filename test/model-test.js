@@ -4,20 +4,17 @@ var should = require('should'),
 
 global.config = config;
 
-var repo = 'geodata',
-  user = 'chelm',
-  file = 'co-river-basin';
-  key = [repo, user, file].join('/');
+var overlay = '1';
 
 before(function (done) {
-  global['Github'] = require('../models/Github.js');
+  global['Geocommons'] = require('../models/Geocommons.js');
   done();
 });
 
-describe('Github Model', function(){
+describe('Geocommons Model', function(){
 
 
-    describe('when caching a github file', function(){
+    describe('when finding an overlay', function(){
       before(function(done ){
         // connect the cache
         Cache.db = PostGIS.connect( config.db.postgis.conn );
@@ -28,11 +25,18 @@ describe('Github Model', function(){
         done();
       });
     
-      it('should find the repo and return the data', function(done){
-        Github.find(user, repo, file, {}, function(err, data){
+      /*it('should error when the data are private', function(done){
+        Geocommons.find(1, {}, function(err, data){
+          should.exist(err);
+          should.not.exist(data);
+          done();
+        });
+      });*/
+
+      it('should find a public overlay', function(done){
+        Geocommons.find(164880, {}, function(err, data){
           should.not.exist(err);
           should.exist(data);
-          data.length.should.equal(1);
           done();
         });
       });

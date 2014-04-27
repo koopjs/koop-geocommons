@@ -1,7 +1,7 @@
 {
-  "name": "koop-github",
+  "name": "koop-geocommons",
   "version": "0.0.1",
-  "description": "A github wrapper for koop ",
+  "description": "A geocommons wrapper for koop",
   "main": "index.js",
   "directories": {
     "test": "test"

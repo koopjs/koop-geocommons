@@ -1,84 +1,31 @@
 module.exports = {
+  'get /geocommons/:id/FeatureServer/:layer/:method': {
+    controller: 'geocommons',
+    action: 'featureservice'
+  },
+
+  'get /geocommons/:id/FeatureServer/:layer': {
+    controller: 'geocommons',
+    action: 'featureservice'
+  },
   
-  'get /github/': {
-    controller: 'github',
+  'get /geocommons/:id/FeatureServer': {
+    controller: 'geocommons',
+    action: 'featureservice'
+  },
+
+  'get /geocommons/:id': {
+    controller: 'geocommons',
+    action: 'find'
+  },
+
+  'get /geocommons': {
+    controller: 'geocommons',
     action: 'index'
   },
-
-  'get /github': {
-    controller: 'github',
-    action: 'index'
-  },
-
-  'get /github/:user': {
-    controller: 'github',
-    action: 'notFound'
-  },
-
-  'get /github/:user/:repo': {
-    controller: 'github',
-    action: 'getRepo'
-  },
-
-  'get /github/:user/:repo/FeatureServer': {
-    controller: 'github',
-    action: 'featureservice'
-  },
-
-  'get /github/:user/:repo/FeatureServer/:layer': {
-    controller: 'github',
-    action: 'featureservice'
-  },
-
-  'get /github/:user/:repo/FeatureServer/:layer/:method': {
-    controller: 'github',
-    action: 'featureservice'
-  },
-
-  'get /github/:user/:repo/:file.:format': {
-    controller: 'github',
-    action: 'getRepo'
-  },
-
-  'get /github/:user/:repo/:file': {
-    controller: 'github',
-    action: 'getRepo'
-  },
-
-  'get /github/:user/:repo/:file/preview': {
-    controller: 'github',
+  
+  'get /geocommons/:id/preview' : {
+    controller: 'geocommons',
     action: 'preview'
-  },
-
-  'get /github/:user/:repo/:file/FeatureServer': {
-    controller: 'github',
-    action: 'featureservice'
-  },
-
-  'get /github/:user/:repo/:file/FeatureServer/:layer': {
-    controller: 'github',
-    action: 'featureservice'
-  },
-
-  'get /github/:user/:repo/:file/FeatureServer/:layer/:method': {
-    controller: 'github',
-    action: 'featureservice'
-  },
-
-
-  'get /github/:user/:repo/:file/thumbnail' : {
-    controller  : 'github',
-    action: 'thumbnail'
-  },
-
-  'get /github/:user/:repo/:file/tiles/:z/:x/:y.:format': { 
-    controller : 'github',
-    action: 'tiles'
-  },
-
-  'get /github/:user/:repo/:file/:layer/tiles/:z/:x/:y.:format': { 
-    controller : 'github',
-    action: 'tiles'
   }
-
 }
