@@ -21,7 +21,7 @@ module.exports = {
                 json.features = data.features;
 
                 Cache.insert( type, id, json, 0, function( err, success){
-                  if ( success ) callback( null, json );
+                  if ( success ) callback( null, [json] );
                 });
               } else {
                 callback( 'Error accessing overlay '+id+' ' + JSON.stringify(data), null );
