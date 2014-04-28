@@ -15,8 +15,8 @@ var q = async.queue(function (task, callback) {
     var end = moment(new Date());
     var diff = end.diff(start, 'milliseconds')/1000;
     var json = JSON.parse(data.body);
-    if (json[0] && json[0].features ){
-      console.log('\tDone w/', task.id, json[0].features.length, diff);
+    if (json && json.features ){
+      console.log('\tDone w/', task.id, json.features.length, diff);
     } else {
       console.log('\d Done w/', task.id, 'No features', diff);
     }

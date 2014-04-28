@@ -55,6 +55,10 @@ Controller.featureservice = function(req, res){
       var id = req.params.id;
       Geocommons.find( id, req.query, function( err, data) {
         delete req.query.geometry;
+        if ( data[0].info && data[0].info.title ){
+          data[0].name = data[0].info.title; 
+        }
+
         Controller._processFeatureServer( req, res, err, data, callback);
       });
     } else {
