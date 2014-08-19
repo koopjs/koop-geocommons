@@ -1,15 +1,17 @@
 var should = require('should'),
   config = require('config'),
-  koopserver = require('koop-server')(config); 
+  koop = require('koop-server/lib');
 
-global.config = config;
+before(function (done) {
+  koop.Cache.db = koop.PostGIS.connect( config.db.postgis.conn );
+  var data_dir = __dirname + '/output/';
+  koop.Cache.data_dir = data_dir;
+  Geocommons = new require('../models/Geocommons.js')( koop );
+  done();
+});
 
 var overlay = '1';
 
-before(function (done) {
-  global['Geocommons'] = require('../models/Geocommons.js');
-  done();
-});
 
 describe('Geocommons Model', function(){
 
@@ -17,7 +19,6 @@ describe('Geocommons Model', function(){
     describe('when finding an overlay', function(){
       before(function(done ){
         // connect the cache
-        Cache.db = PostGIS.connect( config.db.postgis.conn );
         done();
       });
 

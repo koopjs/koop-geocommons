@@ -1,15 +1,15 @@
 var should = require('should'),
   request = require('supertest'),
   config = require('config'),
-  koop = require('koop-server')(config);
+  koop = require('koop-server')(config),
+  kooplib = require('koop-server/lib');
 
-global.config = config;
-
-before(function (done) {
-    Cache.db = PostGIS.connect( config.db.postgis.conn );
-    try { koop.register(require("../index.js")); } catch(e){ console.log('Error require ../index', e); }
-    //console.log(koop)
-    done(); 
+before(function(done){
+  var provider = require('../index.js');
+  model = new provider.model( kooplib );
+  controller = new provider.controller( model );
+  koop._bindRoutes( provider.routes, controller );
+  done();
 });
 
 describe('Koop Routes', function(){
@@ -35,19 +35,8 @@ describe('Koop Routes', function(){
         });
       });
     });
-
-    describe('/geocommons/preview', function() {
-      it('should return 200', function(done) {
-        request(koop)
-          .get('/geocommons/preview')
-          .end(function(err, res){
-            res.should.have.status(200);
-            done();
-        });
-      });
-    });
-
-    describe('FeatureServer', function() {
+/*
+    describe('/FeatureServer', function() {
       it('should return 200', function(done) {
         request(koop)
           .get('/geocommons/104/FeatureServer')
@@ -79,6 +68,6 @@ describe('Koop Routes', function(){
         });
       });
     });
-
+*/
 });
 

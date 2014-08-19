@@ -1,10 +1,15 @@
-var request = require('request');
-module.exports = {
+var request = require('request'),
+  BaseModel = require('koop-server/lib/BaseModel.js');
 
-  find: function( id, options, callback ){
+function Geocommons( koop ){
+
+  var geocommons = {};
+  geocommons.__proto__ = BaseModel( koop );
+
+  geocommons.find = function( id, options, callback ){
     // looks for data in the cache first
     var type = 'Geocommons';
-    Cache.get( type, id, options, function(err, entry ){
+    koop.Cache.get( type, id, options, function(err, entry ){
       if ( err ){
         var url = "http://geocommons.com/overlays/" + id + '.json',
           json = {};
@@ -19,7 +24,7 @@ module.exports = {
               if ( data.features ){
                 json.features = data.features;
 
-                Cache.insert( type, id, json, 0, function( err, success){
+                koop.Cache.insert( type, id, json, 0, function( err, success){
                   if ( success ) callback( null, [json] );
                 });
               } else {
@@ -34,6 +39,10 @@ module.exports = {
         callback( null, entry );
       }
     });
-  }
+  };
+
+  return geocommons;
   
 };
+
+module.exports = Geocommons;
