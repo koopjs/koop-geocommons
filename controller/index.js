@@ -1,14 +1,17 @@
-var BaseController = require('koop-server/lib/Controller.js'),
+var BaseController = require('koop-server/lib/BaseController.js'),
   crypto = require('crypto');
 
 // inherit from base controller
 var Controller = function( Geocommons ){
 
-  this.index = function(req, res){
+  var controller = {};
+  controller.__proto__ = BaseController( ); 
+
+  controller.index = function(req, res){
       res.render(__dirname + '/../views/index');
   };
   
-  this.find = function(req, res){
+  controller.find = function(req, res){
       function send( err, data ){
           if ( err ){
             res.json( err, 500 );
@@ -44,7 +47,7 @@ var Controller = function( Geocommons ){
       }
   };
   
-  this.featureserver = function(req, res){
+  controller.featureserver = function(req, res){
       var callback = req.query.callback;
       delete req.query.callback;
   
@@ -63,9 +66,11 @@ var Controller = function( Geocommons ){
   
   };
   
-  this.preview = function(req, res){
+  controller.preview = function(req, res){
       res.render(__dirname + '/../views/demo', { locals:{ id: req.params.id } });
   };
+
+  return controller;
 }
 
 module.exports = Controller;

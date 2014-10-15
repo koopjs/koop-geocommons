@@ -4,8 +4,6 @@ var should = require('should'),
 
 before(function (done) {
   koop.Cache.db = koop.PostGIS.connect( config.db.postgis.conn );
-  var data_dir = __dirname + '/output/';
-  koop.Cache.data_dir = data_dir;
   Geocommons = new require('../models/Geocommons.js')( koop );
   done();
 });
