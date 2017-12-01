@@ -13,7 +13,7 @@
     "koop-server": "~0.1.1",
     "geohub": "0.3.0",
     "config": "~0.4.35",
-    "ejs": "~1.0.0",
+    "ejs": "~2.5.5",
     "sphericalmercator": "~1.0.2",
     "node.extend": "~1.0.10"
   },
